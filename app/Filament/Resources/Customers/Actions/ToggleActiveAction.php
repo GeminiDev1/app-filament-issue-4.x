@@ -24,6 +24,6 @@ class ToggleActiveAction extends Action
 
     public static function getDefaultName(): ?string
     {
-        return 'mark-inactive';
+        return 'toggle-active-status';
     }
 }
