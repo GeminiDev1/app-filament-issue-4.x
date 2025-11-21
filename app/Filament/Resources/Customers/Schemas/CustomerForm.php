@@ -22,15 +22,6 @@ class CustomerForm
                     ->required(),
                 TextInput::make('phone')
                     ->label('Phone Number'),
-                TextInput::make('address')
-                    ->label('Mailing Address'),
-                RichEditor::make('notes')
-                    ->label('Additional Notes')
-                    ->disableToolbarButtons([
-                        'attachFiles',
-                        'codeBlock',
-                        'blockquote',
-                    ]),
             ]);
     }
 }

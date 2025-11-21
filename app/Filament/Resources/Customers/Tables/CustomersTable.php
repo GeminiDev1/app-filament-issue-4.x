@@ -2,13 +2,10 @@
 
 namespace App\Filament\Resources\Customers\Tables;
 
-use Filament\Actions\Action;
+use App\Models\Customer;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
-use Filament\Actions\EditAction;
-use Filament\Forms\Components\TextInput;
-use Filament\Schemas\Components\Wizard;
-use Filament\Schemas\Components\Wizard\Step;
+use App\Filament\Resources\Customers\Actions\ViewAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
@@ -19,38 +16,22 @@ class CustomersTable
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->label('First Name')
-                    ->searchable()
-                    ->sortable(),
+                    ->label('Name'),
                 TextColumn::make('email')
-                    ->label('Email Address')
-                    ->searchable()
+                    ->label('Email Address'),
+                TextColumn::make('phone')
+                    ->label('Phone Number'),
+                TextColumn::make('is_active')
+                    ->label('Active Status')
+                    ->formatStateUsing(fn (bool $state) => $state ? 'Active' : 'Inactive')
+                    ->badge()
+                    ->color(fn (Customer $record) => $record->is_active ? 'success' : 'danger'),
             ])
             ->filters([
                 //
             ])
             ->recordActions([
-                EditAction::make(),
-                Action::make('delete')
-                    ->label('Delete')
-                    ->schema([
-                        Wizard::make([
-                            Step::make('reason')
-                                ->schema([
-                                    TextInput::make('reason')
-                                        ->label('Reason for Deletion')
-                                        ->required()
-                                ])
-                                ->skippable(), // <-------- Errors
-                            Step::make('confirm')
-                                ->schema([
-                                    TextInput::make('confirm')
-                                        ->label('Type "DELETE" to confirm')
-                                        ->required()
-                                ])
-                        ])
-                        ->skippable() // <-------- This is ok
-                    ])
+                ViewAction::make(),
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

@@ -6,11 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
-        protected $fillable = [
+    protected $fillable = [
         'name',
         'email',
         'phone',
         'address',
-        'notes'
+        'is_active',
+    ];
+
+    protected $casts = [
+        'is_active' => 'boolean',
     ];
 }
