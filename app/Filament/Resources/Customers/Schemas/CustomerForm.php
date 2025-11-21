@@ -14,7 +14,7 @@ class CustomerForm
         return $schema
             ->components([
                 TextInput::make('name')
-                    ->label('First Name')
+                    ->label('Name')
                     ->required(),
                 TextInput::make('email')
                     ->label('Email Address')
