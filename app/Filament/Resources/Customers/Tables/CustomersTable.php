@@ -11,6 +11,8 @@ use Filament\Schemas\Components\Wizard;
 use Filament\Schemas\Components\Wizard\Step;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
+use Filament\Actions\ActionGroup;
+use Illuminate\Database\Eloquent\Model;
 
 class CustomersTable
 {
@@ -30,32 +32,20 @@ class CustomersTable
                 //
             ])
             ->recordActions([
-                EditAction::make(),
-                Action::make('delete')
-                    ->label('Delete')
-                    ->schema([
-                        Wizard::make([
-                            Step::make('reason')
-                                ->schema([
-                                    TextInput::make('reason')
-                                        ->label('Reason for Deletion')
-                                        ->required()
-                                ])
-                                ->skippable(), // <-------- Errors
-                            Step::make('confirm')
-                                ->schema([
-                                    TextInput::make('confirm')
-                                        ->label('Type "DELETE" to confirm')
-                                        ->required()
-                                ])
-                        ])
-                        ->skippable() // <-------- This is ok
-                    ])
-            ])
-            ->toolbarActions([
-                BulkActionGroup::make([
-                    DeleteBulkAction::make(),
-                ]),
+                ActionGroup::make([
+                    EditAction::make()
+                        ->visible(false),
+                    ActionGroup::make([
+                        Action::make('test')
+                            ->icon('heroicon-o-sparkles')
+                            ->color('primary')
+                            ->label('Test')
+                            ->action(function (Model $record) {
+                                dd($record);
+                            })
+                            ->visible(false),
+                    ]),
+                ])
             ]);
     }
 }
