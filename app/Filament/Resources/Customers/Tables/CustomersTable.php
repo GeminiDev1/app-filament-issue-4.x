@@ -3,7 +3,9 @@
 namespace App\Filament\Resources\Customers\Tables;
 
 use App\Models\Customer;
+use App\Filament\Resources\Customers\Actions\ViewRecordAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class CustomersTable
@@ -24,8 +26,16 @@ class CustomersTable
                     ->badge()
                     ->color(fn(Customer $record) => $record->is_active ? 'success' : 'danger'),
             ])
+            ->filters([
+                SelectFilter::make('is_active')
+                    ->label('Active Status')
+                    ->options([
+                        '1' => 'Active',
+                        '0' => 'Inactive',
+                    ]),
+            ])
             ->recordActions([
-                //
+                ViewRecordAction::make(),
             ])
             ->toolbarActions([
                 //
