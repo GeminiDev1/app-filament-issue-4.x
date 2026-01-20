@@ -3,13 +3,7 @@
 namespace App\Filament\Resources\Customers\Tables;
 
 use App\Models\Customer;
-use Filament\Actions\BulkActionGroup;
-use Filament\Actions\DeleteBulkAction;
-use App\Filament\Resources\Customers\Actions\ViewAction;
-use App\Filament\Resources\Customers\Pages\ListCustomers;
 use Filament\Tables\Columns\TextColumn;
-use Filament\Tables\Enums\FiltersLayout;
-use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
 class CustomersTable
@@ -30,15 +24,6 @@ class CustomersTable
                     ->badge()
                     ->color(fn(Customer $record) => $record->is_active ? 'success' : 'danger'),
             ])
-            ->filters([
-                SelectFilter::make('is_active')
-                    ->label('Status')
-                    ->options([
-                        '1' => 'Active',
-                        '0' => 'Inactive',
-                    ])
-                    ->visible(fn(ListCustomers $livewire) => $livewire->activeTab === 'all'),
-                ], layout: FiltersLayout::AboveContent)
             ->recordActions([
                 //
             ])
