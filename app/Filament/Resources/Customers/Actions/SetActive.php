@@ -14,6 +14,7 @@ class SetActive
             ->action(function (Customer $record) {
                 $record->update(['is_active' => true]);
             })
-            ->visible(fn(Customer $record) => $record->is_active === false);
+            ->visible(fn(Customer $record) => $record->is_active === false)
+            ->color('success');
     }
 }

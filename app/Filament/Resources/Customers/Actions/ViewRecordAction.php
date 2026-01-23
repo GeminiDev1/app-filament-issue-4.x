@@ -24,7 +24,8 @@ class ViewRecordAction
                 TextEntry::make('is_active')
                     ->label('Active')
                     ->badge()
-                    ->formatStateUsing(fn(bool $state) => $state ? 'Active' : 'Inactive'),
+                    ->formatStateUsing(fn(bool $state) => $state ? 'Active' : 'Inactive')
+                    ->color(fn(bool $state) => $state ? 'success' : 'danger'),
             ])
             ->slideOver()
             ->extraModalFooterActions([

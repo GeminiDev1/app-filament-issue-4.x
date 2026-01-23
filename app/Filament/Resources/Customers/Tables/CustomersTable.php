@@ -4,7 +4,6 @@ namespace App\Filament\Resources\Customers\Tables;
 
 use App\Models\Customer;
 use App\Filament\Resources\Customers\Actions\ViewRecordAction;
-use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -16,16 +15,20 @@ class CustomersTable
         return $table
             ->columns([
                 TextColumn::make('name')
-                    ->label('Name'),
+                    ->label('Name')
+                    ->searchable(),
                 TextColumn::make('email')
-                    ->label('Email Address'),
+                    ->label('Email Address')
+                    ->searchable(),
                 TextColumn::make('phone')
-                    ->label('Phone Number'),
+                    ->label('Phone Number')
+                    ->searchable(),
                 TextColumn::make('is_active')
                     ->label('Active Status')
                     ->formatStateUsing(fn(bool $state) => $state ? 'Active' : 'Inactive')
                     ->badge()
-                    ->color(fn(Customer $record) => $record->is_active ? 'success' : 'danger'),
+                    ->color(fn(Customer $record) => $record->is_active ? 'success' : 'danger')
+                    ->searchable(),
             ])
             ->filters([
                 SelectFilter::make('is_active')
@@ -36,7 +39,7 @@ class CustomersTable
                     ]),
             ])
             ->recordActions([
-                EditAction::make(),
+                ViewRecordAction::make(),
             ])
             ->toolbarActions([
                 //
