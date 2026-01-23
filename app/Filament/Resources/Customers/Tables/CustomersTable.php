@@ -31,12 +31,7 @@ class CustomersTable
                     ->searchable(),
             ])
             ->filters([
-                SelectFilter::make('is_active')
-                    ->label('Active Status')
-                    ->options([
-                        '1' => 'Active',
-                        '0' => 'Inactive',
-                    ]),
+                // 
             ])
             ->recordActions([
                 ViewRecordAction::make(),
