@@ -4,6 +4,7 @@ namespace App\Filament\Resources\Customers\Tables;
 
 use App\Models\Customer;
 use App\Filament\Resources\Customers\Actions\ViewRecordAction;
+use Filament\Actions\EditAction;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
@@ -35,7 +36,7 @@ class CustomersTable
                     ]),
             ])
             ->recordActions([
-                ViewRecordAction::make(),
+                EditAction::make(),
             ])
             ->toolbarActions([
                 //
