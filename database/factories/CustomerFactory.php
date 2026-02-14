@@ -15,7 +15,6 @@ class CustomerFactory extends Factory
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
             'phone' => fake()->phoneNumber(),
-            'is_email_verified' => fake()->boolean(),
             'is_active' => fake()->boolean(),
         ];
     }

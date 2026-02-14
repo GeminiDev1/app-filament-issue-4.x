@@ -2,7 +2,7 @@
 
 namespace App\Filament\Resources\Customers\Actions;
 
-use App\Filament\Resources\Customers\Actions\VerifyCustomerEmailAction;
+use App\Filament\Resources\Customers\Actions\UpdateCustomerEmailAction;
 use Filament\Actions\Action;
 use Filament\Infolists\Components\TextEntry;
 
@@ -22,17 +22,13 @@ class ViewCustomerAction extends Action
                 TextEntry::make('name'),
                 TextEntry::make('email'),
                 TextEntry::make('phone'),
-                TextEntry::make('is_email_verified')
-                    ->badge()
-                    ->formatStateUsing(fn($state) => $state ? 'Yes' : 'No')
-                    ->color(fn($state) => $state ? 'success' : 'danger'),
                 TextEntry::make('is_active')
                     ->badge()
                     ->formatStateUsing(fn($state) => $state ? 'Yes' : 'No')
                     ->color(fn($state) => $state ? 'success' : 'danger'),
             ])
             ->extraModalFooterActions([
-                VerifyCustomerEmailAction::make(),
+                UpdateCustomerEmailAction::make(),
             ]);
     }
 

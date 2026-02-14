@@ -17,10 +17,6 @@ class CustomersTable
                 TextColumn::make('name'),
                 TextColumn::make('email'),
                 TextColumn::make('phone'),
-                TextColumn::make('is_email_verified')
-                    ->badge()
-                    ->formatStateUsing(fn($state) => $state ? 'Yes' : 'No')
-                    ->color(fn($state) => $state ? 'success' : 'danger'),
                 TextColumn::make('is_active')
                     ->badge()
                     ->formatStateUsing(fn($state) => $state ? 'Yes' : 'No')

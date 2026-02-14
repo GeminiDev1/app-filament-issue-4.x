@@ -13,7 +13,6 @@ class Customer extends Model
         'name',
         'email',
         'phone',
-        'is_email_verified',
         'is_active',
     ];
 }
